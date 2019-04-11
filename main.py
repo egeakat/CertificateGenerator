@@ -15,10 +15,49 @@ def convertToPdf(img):
     file.close() 
 
 
-img = cv2.imread("img.jpg")
+def writeToImg(img, line):
+    font                   = cv2.FONT_HERSHEY_COMPLEX
+    bottomLeftCornerOfText = (324,470)
+    fontScale              = 0.85
+    fontColor              = (0,0,0)
+    lineType               = 2
+
+    cv2.putText(img,'Hello World!', 
+        bottomLeftCornerOfText, 
+        font, 
+        fontScale,
+        fontColor,
+        lineType)
+
+
+
+
+img = cv2.imread("image.jpg")
+'''
 plt.imshow(img)
 plt.show()
+'''
+font                   = cv2.FONT_HERSHEY_SIMPLEX
+bottomLeftCornerOfText = (324,470)
+fontScale              = 0.85
+fontColor              = (0,0,0)
+lineType               = 2
+
+cv2.putText(img,'Hello World!', 
+    bottomLeftCornerOfText, 
+    font, 
+    fontScale,
+    fontColor,
+    lineType)
+
 cv2.imshow("image", img)
+
+
+
+
+
+
+
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
