@@ -33,24 +33,13 @@ def writeToImg(img, line):
 
 
 img = cv2.imread("image.jpg")
-'''
+
 plt.imshow(img)
 plt.show()
-'''
-font                   = cv2.FONT_HERSHEY_SIMPLEX
-bottomLeftCornerOfText = (324,470)
-fontScale              = 0.85
-fontColor              = (0,0,0)
-lineType               = 2
 
-cv2.putText(img,'Hello World!', 
-    bottomLeftCornerOfText, 
-    font, 
-    fontScale,
-    fontColor,
-    lineType)
 
 cv2.imshow("image", img)
+
 
 
 
@@ -61,16 +50,11 @@ cv2.imshow("image", img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
-'''
-print("df")
+
 store = []
-with open('ex.csv', 'r') as csvFile:
+with open('ex2.csv', 'r') as csvFile:
     reader = csv.reader(csvFile)
-    print(reader)
     for row in reader:
         store = row[0].split(";")
+        print(store)
 csvFile.close()
-
-'''
-
-
