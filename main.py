@@ -26,9 +26,16 @@ def writeToImg(img, line):
 
     ctr = 0
     '''
-    ['Sıra No', 'Sicil No', 'Vatandaşlık No', 'Ad', 'Soyad', 'Başvuru Alanı', '']
-    cornerArray = [(908,717), (340,566), (324,513), (286,479), (286 + len(line[3])*16,479), (346,579), (0,0), (344,716)]
-    
+    line[2] = line[2] + " " + line[3]
+    line.pop(3)
+    line.pop(4)
+    line.pop(7)
+    #['Sıra No', 'Sicil No', 'Vatandaşlık No', 'Ad', 'Soyad', 'Başvuru Alanı', '']
+    #['Vatandaşlık no', 'Sicil No','Ad Soyad', 'Başvuru Alanı', 'Salon Adı','Sıra No']
+    # Vatandaşlık No;Sicil No;Ad;Sınıf;Kat;Salon Adı;Sıra No;Yer
+
+    #cornerArray = [(908,717), (340,566), (324,513), (286,479), (286 + len(line[3])*16,479), (346,579), (0,0), (344,716)]
+    cornerArray = [(324,513), (341,545), (286,479), (346,579),(906,684),(344,716), (908,717)]
     b,g,r,a = 0,0,0,0
     fontpath = "OpenSans-Regular.ttf"
     font = ImageFont.truetype(fontpath, 24)
@@ -44,12 +51,11 @@ def writeToImg(img, line):
     #  908 741 Sıra no 909 720
    
     print("-----")
-    for i in range(8):
+    for i in range(7):
 
         draw.text(cornerArray[i],  line[i], font = font, fill = (b, g, r, a))
         img = np.array(img_pil)
-    
-    
+ 
     return img
 
 
@@ -62,24 +68,19 @@ def writeToImg(img, line):
 
 
 store = []
-with open('ex.csv', 'r') as csvFile:
+with open('liste3.csv', 'r') as csvFile:
     img = cv2.imread("image.jpg")
 
     reader = csv.reader(csvFile)
-    hall  = ""
     for row in reader:
         store = row[0].split(";")
-        if(store[2] == "Salon"):
-           hall = store[3]
-        print(hall)
-        store.append(hall)
+        
  #      plt.imshow(img)
  #      plt.show()
         print(store)
-        print(hall)
         newImg = writeToImg(img, store)
         
-        cv2.imwrite(store[2] + ".jpg",newImg)
-        convertToPdf(store[2])
-        os.remove(store[2] + ".jpg")
+        cv2.imwrite(store[0] + ".jpg",newImg)
+        convertToPdf(store[0])
+        os.remove(store[0] + ".jpg")
 csvFile.close()
