@@ -11,7 +11,7 @@ import os
 def convertToPdf(filename):
     img = Image.open(filename + ".jpg") 
     pdf_bytes = img2pdf.convert(img.filename) 
-    file = open("pdf/" + filename + ".pdf", "wb") 
+    file = open("yenibelg/" + filename + ".pdf", "wb") 
     file.write(pdf_bytes) 
     img.close() 
     file.close() 
@@ -80,7 +80,7 @@ with open('liste3.csv', 'r') as csvFile:
         print(store)
         newImg = writeToImg(img, store)
         
-        cv2.imwrite(store[0] + ".jpg",newImg)
-        convertToPdf(store[0])
-        os.remove(store[0] + ".jpg")
+        cv2.imwrite(store[0] + store[1] + ".jpg",newImg)
+        convertToPdf(store[0] + store[1])
+        os.remove(store[0] + store[1] + ".jpg")
 csvFile.close()
